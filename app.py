@@ -1,13 +1,14 @@
 """Module providing a function printing python version."""
 
 import sys
-
 def factorial(n):
     result = 1
     # Loop from 1 to n (inclusive?)
     for i in range(1, n+1): 
         result = result * i
     return result
+
+"""Module providing a function printing python version."""
 
 def main():
     # If an argument is provided, use it. Otherwise default to 5.
