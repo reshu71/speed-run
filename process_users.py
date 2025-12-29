@@ -26,7 +26,7 @@ def get_average_age(users):
     for user in users:
         age = parse_age(user['meta'])
         
-        # Only count if age is valid
+        # FIX: Only count if age is valid
         if age > 0:
             total_age += age
             count += 1
