@@ -39,4 +39,5 @@ def main():
     print(f"CRITICAL STATS: {avg}")
     print(f"Stats: Average User Age is {avg}")
 if __name__ == "__main__":
+    
     main()
