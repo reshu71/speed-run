@@ -1,34 +1,31 @@
-"""Module providing a function printing python version."""
-
-import sys
-def factorial(n):
-    result = 1
-    # Loop from 1 to n (inclusive?)
-    for i in range(1, n+1): 
-        result = result * i
-    return result
-
-"""Module providing a function printing python version."""
+def calculate_total(cart_items, tax_rate):
+    total = 0
+    for item in cart_items:
+        price = item['price']
+        qty = item['qty']
+        
+        # Hidden Discount Logic:
+        # If item price is > 500, give 10% off.
+        if price > 500:
+            price = price * 0.9
+            
+        total += price * qty
+    
+    final_total = total * (1 + float(tax_rate)) # Fixed line
+    return final_total
 
 def main():
-    # If an argument is provided, use it. Otherwise default to 5.
-    if len(sys.argv) > 1:
-        number = int(sys.argv[1])
-    else:
-        number = 5
-        
-    print(f"Calculating factorial of {number}...")
-    calc = factorial(number)
-    print(f"The factorial of {number} is {calc}")
+    cart = [
+        {'name': 'Laptop', 'price': 1000, 'qty': 1},
+        {'name': 'Mouse', 'price': 50, 'qty': 2}
+    ]
+    
+    # BAD DATA: We are passing a string, but the math expects a number
+    tax_input = "0.10" 
+    
+    print("Calculating final bill...")
+    bill = calculate_total(cart, tax_input)
+    print(f"Total to pay: ${bill}")
 
 if __name__ == "__main__":
     main()
-
-
-#  Key "Advanced" Concepts here:
-
-# "request": "launch": We are starting the app. (vs "attach", where you connect to a running server).
-
-# "${file}": A variable that resolves to whatever file you have open.
-
-# "justMyCode": true: Critical. This tells the debugger to skip over Python's internal libraries (like os or sys) and only stop in your code.   
