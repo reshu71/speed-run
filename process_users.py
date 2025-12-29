@@ -30,13 +30,13 @@ def get_average_age(users):
         if age > 0:
             total_age += age
             count += 1
-        
+    
     return total_age / count
 
 def main():
     users = json.loads(raw_data)
     avg = get_average_age(users)
-    print(f"Average Age: {avg}")
-
+    print(f"CRITICAL STATS: {avg}")
+    print(f"Stats: Average User Age is {avg}")
 if __name__ == "__main__":
     main()
