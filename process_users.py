@@ -33,8 +33,8 @@ def get_average_age(users):
     
     return total_age / count
 # WORK IN PROGRESS - DO NOT COMMIT
-def unfinished_function():
-    print("I am broke)
+# def unfinished_function():
+#     print("I am broke")
 
 def main():
     users = json.loads(raw_data)
