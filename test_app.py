@@ -1,21 +1,15 @@
 import pytest
-from process_users import get_average_age
+from process_users import parse_age
 
-# Test Case 1: The Happy Path
-def test_average_basic():
-    users = [
-        {"meta": "age:20"},
-        {"meta": "age:30"}
-    ]
-    # (20 + 30) / 2 = 25
-    assert get_average_age(users) == 25
+# The "Strategy": List of (input, expected_output) tuples
+test_cases = [
+    ("age:30,role:admin", 30),  # Standard
+    ("role:admin,age:45", 45),  # Different order
+    ("role:guest", 0),          # Missing age
+    ("age:0", 0),               # Zero age
+    ("age:99,role:user", 99),   # High number
+]
 
-# Test Case 2: The "Dave" Bug (Zero Age)
-def test_average_ignores_zero():
-    users = [
-        {"meta": "age:20"},
-        {"meta": "age:0"}, # This should be ignored
-        {"meta": "age:40"}
-    ]
-    # (20 + 40) / 2 = 30. (If bug exists, it would be 60/3 = 20)
-    assert get_average_age(users) == 30
+@pytest.mark.parametrize("meta_string","expected_string",test_cases)
+def test_parse_age_variations(meta_string,expected_string):
+    assert parse_age(meta_string) == expected_string
